@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Songs Search Engine</title>
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+    function validateForm() {
+        var x = document.forms["myForm"]["keyword"].value;
+        if (x == "") {
+            alert("Enter your keywords!");
+            return false;
+        }
+    }
+    </script>
+
+    <style type="text/css">
+        .round{
+            border-radius: 30px;
+        }
+    </style>
+ 
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <br><br>
+
+        <div class="row">
+            <center>
+                <h1 ><font face ="Rancho" size=40>Songs Search Engine </font></h1>
+				<img src="http://clipart-library.com/images/yTkreLgpc.jpg" width="250px" height="150px">
+            </center>
+        </div>
+ 
+        <div class="row" style="margin-top: 50px">
+            <center>
+                <form name="myForm" onsubmit="return validateForm()" action="/search" method="post">
+                    <input type="text" class="form-control round" id="keyword" name="keyword" placeholder="Enter your lyrics here ...." style="width: 500px"><br>
+                    <button type="submit" class="btn btn-info ">Search</button>
+                </form>
+            </center>  
+        </div>
+ 
+        <footer class="footer" style="margin-top: 50px">
+            <p align="center">&copy; 2019 TA SI-13 Group</p>
+        </footer>
+ 
+    </div>
+
+</body>
+ 
+</html>

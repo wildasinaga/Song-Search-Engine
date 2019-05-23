@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Songs Search Engine</title>
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+    function validateForm() {
+        var x = document.forms["myForm"]["keyword"].value;
+        if (x == "") {
+            alert("Enter your keywords!");
+            return false;
+        }
+    }
+    </script>
+
+    <style type="text/css">
+        .round{
+            border-radius: 30px;
+        }
+        .header{
+            padding-top: 20px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            background-color: #ddd;
+        }
+        .header2{
+            padding-top: 5px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            background-color: #ddd;
+        }
+        .body-content{
+            padding: 0px 20px 10px 25px;
+            background-color: #f5f5f5
+        }
+        .image-flag{
+            margin-top: 10px
+        }
+        .not-found{
+            margin-top: 60px;
+            font-size: 30pt;
+            color: #5bc0de;
+        }
+    </style>
+ 
+</head>
+ 
+<body style="background-color: #f5f5f5">
+
+    <div class="row header">
+        <div class="col-md-2">
+           
+        </div>
+        <div class="col-md-6">
+			
+            <form class="form-inline" name="myForm" onsubmit="return validateForm()" action="search" method="post">
+                <input type="text" class="form-control round" id="keyword" name="keyword" value="{{ keyword }}" style="width: 500px">
+                <button type="submit" class="btn btn-info ">Search</button>
+            </form>
+        </div>
+        <div class="col-md-4">
+            
+        </div>
+    </div>
+
+    <div class="row header2">
+        <div class="col-md-2">
+       
+        </div>
+       <div class="col-md-2">
+           
+<!--<a href="index.html" class="btn btn-default">HOME</a>-->
+        </div>
+        <div class="col-md-4">
+            
+        </div>
+    </div>
+
+    <div class="row body-content">
+        <div class="col-md-12">
+            {% if data == [] %}
+            <center>
+			<br>
+			<h1> <font face ="Rancho" size=20> <center>Your Result for keyword <b>"{{ keyword }}"</b> </h1>
+                <!--<div class="not-found">404 Not Found!</div>-->
+				<br>
+				<img src="https://www.impactbnd.com/hubfs/intelligent-404-pages.jpg"  />
+               
+            </center>
+            {% else %}
+			
+			<div class="card" ><h1><font face ="Rancho" size=20> <center>Your Result for keyword <b>"{{ keyword }}"</b> </h1>
+                {% for key in data %}
+                
+                        <div class="card border-primary mb-3" style="width: 800px; background-color: white; margin-left: 250px; padding: 15px; padding-top: 8px; margin-top: 15px;">
+                         <center>
+						  <div class="card-body" style="width: 390px;" >
+						   <h1><font face ="BadlyStamped"><center> {{ key[0][0] }}</h1>
+                         <center><h2><font face ="Pristina"><b> {{ key[0][1] }} </center></h2>
+						<h3> <b>{{ key[0][3] }}</b></h3>
+						 <hr>
+						 
+						 <b><h4><font face ="Rancho">SCORE : {{key[1]}}</h4></b>
+						<hr>
+						<center><h3><font face ="Agency FB" >{{ key[0][2] }}</center></h3>
+						 <hr>
+                            <p class="card-text" style="margin: 0px;">{{ key[2] }}</font></p>
+                          </div>
+                        </div>
+                
+                {% endfor %}
+            {% endif %}    
+        </div>
+    </div>
+
+</body>
+ 
+</html>

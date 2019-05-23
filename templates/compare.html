@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>EEPIS-FIRE Search Engine (Image)</title>
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+    function validateForm() {
+        var x = document.forms["myForm"]["keyword"].value;
+        if (x == "") {
+            alert("Silahkan masukkan teksnya!");
+            return false;
+        }
+    }
+    </script>
+
+    <style type="text/css">
+        .round{
+            border-radius: 30px;
+        }
+        .header{
+            padding-top: 20px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            background-color: #ddd;
+        }
+        .header2{
+            padding-top: 5px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            background-color: #ddd;
+        }
+        .body-content{
+            padding: 0px 20px 10px 25px;
+            background-color: #f5f5f5
+        }
+        .image-flag{
+            margin-top: 10px
+        }
+        .not-found{
+            margin-top: 60px;
+            font-size: 30pt;
+            color: #5bc0de;
+        }
+    </style>
+ 
+</head>
+ 
+<body style="background-color: #f5f5f5">
+
+    <div class="row header">
+        <div class="col-md-2">
+           <!--  <h2>MY LOGO</h2> -->
+        </div>
+        <div class="col-md-6">
+            <form class="form-inline" name="myForm" onsubmit="return validateForm()" action="search" method="post">
+                <input type="text" class="form-control round" id="keyword" name="keyword" value="" style="width: 500px">
+                <button type="submit" class="btn btn-success round">Search</button>
+            </form>
+        </div>
+        <div class="col-md-4">
+            
+        </div>
+    </div>
+
+    <div class="row header2">
+        <div class="col-md-2">
+           <!--  <h2>MY LOGO</h2> -->
+        </div>
+        <div class="col-md-6">
+            <button type="button" class="btn btn-sm btn-light round">All</button>
+            <button type="button" class="btn btn-sm btn-info round">Images</button>
+            <button type="button" class="btn btn-sm btn-light round">News</button>
+            <button type="button" class="btn btn-sm btn-light round">More</button>
+            <button type="button" class="btn btn-sm btn-light round">Settings</button>
+            <button type="button" class="btn btn-sm btn-light round">Tools</button>
+        </div>
+        <div class="col-md-4">
+            
+        </div>
+    </div>
+
+    <center>
+    <div class="row body-content">
+        {% if data == [] %}
+            <center>
+                <div class="not-found">404 Not Found!</div>
+                <div><img src="images/wind.png" width="150px" height="150px"></div>
+            </center>
+        {% else %}
+            {% for url in data %}
+               <form action="search" method="post"> 
+                    <a href="http://127.0.0.1:5000/compare?original={{ url }}">
+                        <img class="image-flag" src="../images/{{ url }}" height="100px" style="margin-right: 5px">
+                    </a>
+                    <input type="hidden" name="original" value="{{ url }}"> 
+               </form> 
+            {% endfor %}
+        {% endif %}
+    </div>
+    </center>
+
+</body>
+ 
+</html>
